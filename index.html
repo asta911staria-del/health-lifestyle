@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<title>فلسفة الجسد والوعي الرقمي - نمط الحياة الصحي</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo:wght@400;600;700;900&display=swap">
+<style>
+/* توحيد الخط العام */
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Cairo", sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #2c3e50;
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* تنسيق القائمة الجانبية (على اليمين) */
+.sidebar-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 270px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+  padding-top: 20px;
+  z-index: 100;
+}
+
+.sidebar-brand {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+  color: #134e38;
+  padding: 15px 10px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 14px 25px;
+  text-align: right;
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4a5568;
+  cursor: pointer;
+  transition: 0.3s;
+  border-right: 5px solid transparent;
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+  background-color: #f0f7f4;
+  color: #134e38;
+  border-right-color: #2e7d32;
+}
+
+/* محتوى الصفحة الرئيسي */
+.main-content {
+  margin-right: 270px;
+  padding: 30px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .sidebar-right {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .main-content {
+    margin-right: 0;
+    padding: 15px;
+  }
+}
+
+/* التبديل بين التبويبات */
+.tab-page {
+  display: none;
+}
+.tab-page.active-page {
+  display: block;
+}
+
+/* تصميم البطاقات العامة */
+.card-custom {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  margin-bottom: 30px;
+  padding: 35px;
+}
+
+/* تنسيق الصور */
+.tab-img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ألوان رأسية مميزة بكل تبويب */
+.header-home { background: linear-gradient(135deg, #134e38, #2e7d32); color: white; border-top: 6px solid #a3e4d7; }
+.header-articles { background: linear-gradient(135deg, #0d3b66, #1d6fa5); color: white; border-top: 6px solid #90e0ef; }
+.header-tips { background: linear-gradient(135deg, #4a154b, #7b2cbf); color: white; border-top: 6px solid #e0aaff; }
+.header-about { background: linear-gradient(135deg, #7209b7, #b5179e); color: white; border-top: 6px solid #ff70a6; }
+.header-contact { background: linear-gradient(135deg, #d94e14, #f77f00); color: white; border-top: 6px solid #eae2b7; }
+
+.page-header-box {
+  padding: 35px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #edf2f7;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 19px;
+  margin-top: 25px;
+}
+
+p, li {
+  font-size: 16px;
+  color: #334155;
+  text-align: justify;
+}
+
+.quote-box {
+  background-color: #f8fafc;
+  border-right: 4px solid #2e7d32;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #475569;
+}
+
+.team-member {
+  background: #f8f9fa;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 10px 0;
+  font-weight: 700;
+  color: #1e293b;
+  border-right: 5px solid #b5179e;
+}
+</style>
+</head>
+<body>
+
+<!-- شريط التنقل الجانبي الأيمن -->
+<div class="sidebar-right">
+  <div class="sidebar-brand">🌱 هارموني: الوجود والصحة</div>
+  <button class="sidebar-item active" onclick="openPage(event, 'home')">🏛️ فلسفة التوازن</button>
+  <button class="sidebar-item" onclick="openPage(event, 'articles')">📖 مقالات علمية ومفاهيمية</button>
+  <button class="sidebar-item" onclick="openPage(event, 'tips')">🧘 أطروحات يومية</button>
+  <button class="sidebar-item" onclick="openPage(event, 'about')">👥 فلسفتنا وفريق العمل</button>
+  <button class="sidebar-item" onclick="openPage(event, 'contact')">📞 حوار وتواصل</button>
+</div>
+
+<!-- المحتوى الرئيسي -->
+<div class="main-content">
+
+  <!-- 1. صفحة فلسفة التوازن (الرئيسية) -->
+  <div id="home" class="tab-page active-page">
+    <div class="page-header-box header-home w3-center">
+      <h1 class="w3-xxlarge" style="font-weight: 900;">أنطولوجيا الجسد والوعي الرقمي</h1>
+      <p class="w3-large">استعادة التناغم الفسيولوجي والنفسي في عصر الشاشات والتدفق المعلوماتي.</p>
+    </div>
+    
+    <div class="card-custom">
+      <!-- صورة التبويب الأول: الطبيعة والتأمل والتوازن -->
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80" alt="فلسفة التوازن والتأمل" class="tab-img">
+
+      <h2>الجسد كمعبد للوعي: نحو فلسفة صحية جديدة</h2>
+      <p>ليس الجسد البشري مجرد آلة بيولوجية نستهلكها لتأدية المهام، بل هو "المكان الأول" الذي نختبر من خلاله الوجود. إن الصحة الحقيقية في منظورها الفلسفي الحديث تتجاوز غياب المرض الفسيولوجي؛ إنها حالة من "التناغم الديناميكي" بين الخلايا، المشاعر، والمحيط البيئي.</p>
+      
+      <div class="quote-box">
+        "إننا لا نملك أجساداً، بل نحن أجسادنا... وحين نفقد التواصل مع الحقيقة البيولوجية لجسدنا، ينفصل الوعي عن مرساه الاصلي."
+      </div>
+
+      <p>في عالم اليوم المحكوم بالسرعة والافتراضية، يتعرض الإنسان لما يُعرف بفقدان الاتصال بالتجربة الحية (Disembodiment). تهدف هذه المنصة إلى إعادة تأطير نمط الحياة الصحي كفعل مقاومة واعية ضد الخمول البيولوجي والتشتت الذهني، مستندة إلى أحدث ما توصلت إليه علوم الأعصاب والطب الوقائي.</p>
+    </div>
+  </div>
+
+  <!-- 2. صفحة المقالات الصحية الموثقة -->
+  <div id="articles" class="tab-page">
+    <div class="page-header-box header-articles">
+      <h1 class="w3-xxlarge" style="font-weight: 900;">الأطروحات والمقالات الموثقة</h1>
+      <p class="w3-large">قراءات عميقة تدمج الفسيولوجيا بالتحليل السلوكي المستند للحقائق.</p>
+    </div>
+
+    <div class="card-custom">
+      <!-- صورة المقال الأول: التغذية الصحية -->
+      <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80" alt="التغذية السليمة" class="tab-img">
+
+      <h2>📚 المقال الأول: ميكانيكا التغذية والتحول الميتابوليزمي</h2>
+      <p>تُمثّل التغذية عملية كيميائية وحيوية يتم من خلالها تحويل البيئة الخارجية إلى خلايا داخلية. إن الطعام الذي نستهلكه ليس مجرد سُعرات حرارية للتزود بالمهام، بل هو "معلومات بيولوجية" تشفر سلوك جيناتنا (Epigenetics).</p>
+      
+      <h3 style="color: #0d3b66;">الأبعاد العلمية الموثقة للتغذية والتجدد الخلايا:</h3>
+      <ol style="line-height: 2.2; padding-right: 20px;">
+        <li><b>المرونة الميتابوليزمية (Metabolic Flexibility):</b> تؤكد الدراسات الصادرة عن <i>مؤسسات أبحاث الأيض العالمية</i> أن تقليل السكريات المكررة يعزز قدرة الميتوكندريا على حرق الدهون بكفاءة، مما يحمي الدماغ من التهابات الأعصاب المزمنة.</li>
+        <li><b>الحركة وتخفيض الإجهاد التأكسدي:</b> إدخال 30 دقيقة من النشاط البدني يومياً يُحفز إفراز عامل النمو العصبي المستمد من الدماغ (BDNF)، وهو البروتين المسؤول عن إعادة بناء الشبكات العصبية وتحسين القدرات المعرفية.</li>
+        <li><b>محور الأمعاء والدماغ (Gut-Brain Axis):</b> أثبتت الأبحاث الحديثة أن 90% من هرمون السيروتونين (هرمون استقرار المزاج) يُصنع داخل الميكروبيوم المعوي، مما يجعل النظام الغذائي النباتي والغني بالألياف ركيزة أولى للصحة النفسية.</li>
+      </ol>
+      <p class="w3-small" style="color: #64748b; margin-top: 15px;"><b>المصادر:</b> دورية Nature Reviews Endocrinology & معاهد الصحة الوطنية الأمريكية (NIH).</p>
+    </div>
+
+    <div class="card-custom">
+      <!-- صورة المقال الثاني: التوازن الرقمي والشاشات -->
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="السيكولوجيا الرقمية" class="tab-img">
+
+      <h2>📚 المقال الثاني: السيكولوجيا الرقمية وفلسفة الترطيب</h2>
+      <p>يقف الإنسان المعاصر على مفترق طرق بين واقع حيوي يحتاج المادة، وواقع افتراضي يمتص الانتباه. إن ظاهرة "الإدمان الرقمي" ليست ضعفاً في الإرادة، بل هي استغلال بيولوجي لدوائر الدوبامين في الدماغ.</p>
+
+      <h3 style="color: #0d3b66;">التوازن البيولوجي في العصر الرقمي:</h3>
+      <ul style="list-style-type: square; line-height: 2.2; padding-right: 20px;">
+        <li><b>التوازُن الهيدروليكي (Hydration Homeostasis):</b> انخفاض مستويات الماء في الجسم بنسبة 1-2% فقط يؤدي إلى انكماش طفيف في حجم الخلايا الدماغية، مما يتسبب في ضبابية التفكير والإجهاد الذهني السريع.</li>
+        <li><b>الصوم الرقمي الاستراتيجي (Digital Detoxing):</b> تظهر الأبحاث النفسية أن التعرض المستمر للإشعارات يخلق حالة من التأهب المزمن للجهاز العصبي السمبثاوي. وضع حدود زمنية للتصفح يتيح للجهاز العصبي اللاباراسمبثاوي إعادة ترميم ذاته.</li>
+        <li><b>إعادة الاتصال بالواقع الفيزيائي:</b> استبدال العالم الافتراضي بالأنشطة الملموسة يقلل من مستويات الكورتيزول ويستعيد قدرة العقل على التركيز العميق (Deep Work).</li>
+      </ul>
+      <p class="w3-small" style="color: #64748b; margin-top: 15px;"><b>المصادر:</b> الجمعية الأمريكية لعلوم النفس (APA) ودوريات الجمعية الطبية الأمريكية.</p>
+    </div>
+  </div>
+
+  <!-- 3. صفحة نصائح يومية بتأطير فلسفي -->
+  <div id="tips" class="tab-page">
+    <div class="page-header-box header-tips">
+      <h1 class="w3-xxlarge" style="font-weight: 900;">أطروحات وركائز يومية</h1>
+      <p class="w3-large">تطبيقات سلوكية يومية لتجسيد فلسفة التوازن البيولوجي.</p>
+    </div>
+
+    <div class="card-custom">
+      <!-- صورة التبويب الثالث: النوم واليوغا والنشاط السلوكي -->
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80" alt="نصائح صحية ونوم منتظم" class="tab-img">
+
+      <h2>💡 ركائز الحياة الواعية والمستدامة</h2>
+      <ul style="list-style-type: square; line-height: 2.4; padding-right: 20px;">
+        <li><b>قدسية النوم والدورة السيركادية (Circadian Rhythm):</b> النوم المنتظم ليلًا ليس هدرًا للوقت، بل هو العملية الوحيدة التي يتم خلالها تنظيف الدماغ من الفضلات الأيضية عبر الجهاز الجليمفاوي (Glymphatic System).</li>
+        <li><b>الوعي في الاستهلاك الغذائي:</b> التوقف عن تناول الطعام قبل الشبع الفعلي والابتعاد عن الأغذية الفائقة المعالجة (Ultra-Processed Foods) يضمن استقرار مستويات الأنسولين ويمنع خمول ما بعد الوجبات.</li>
+        <li><b>المسؤولية الإبستمولوجية (الوعي المعرفي):</b> تقتضي الأمانة العقلية عدم تبني أو نشر أي معلومة صحية أو طبية دون فحص مصادرها العلمية الموثوقة ومراجعتها بدقة، للحد من التضليل العلمي الرقمي.</li>
+        <li><b>إراحة المحور البصري (قاعدة 20-20-20):</b> العين لم تُخلق للتدقيق في شاشات مسطحة على بعد سنتيمترات لساعات. إطلاق البصر في المدى المفتوح يُعيد مرونة عضلات العين ويقلل من الصداع العصبي.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. صفحة من نحن -->
+  <div id="about" class="tab-page">
+    <div class="page-header-box header-about">
+      <h1 class="w3-xxlarge" style="font-weight: 900;">من نحن (فريق الرؤية)</h1>
+      <p class="w3-large">مجموعة من العقول الشابة الملتزمة بتوظيف المعرفة التكنولوجية لبناء مجتمع واعي.</p>
+    </div>
+
+    <div class="card-custom">
+      <!-- صورة التبويب الرابع: العمل الجماعي والتعاون -->
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="فريق العمل والتعاون" class="tab-img">
+
+      <h2>👥 الرؤية الإنسانية والمهنية للمشروع</h2>
+      <p>نحن فريق من الطلاب تجمعنا رؤية واحدة: إعادة بناء العلاقة بين الإنسان والتقنية على أسس صحية وفلسفية رصينة. نؤمن بأن المعرفة الموثوقة هي الخطوة الأولى نحو بناء مجتمع يتمتع بالوعي الذاتي والسلامة الفسيولوجية. ينطلق مشروعنا من الإيمان بأن التكنولوجيا يجب أن تكون أداة لتسخير طاقات الإنسان، لا قيداً يكبل إمكاناته الجسدية والعقلية.</p>
+      
+      <p style="margin-top: 25px; font-weight: 700; color: #7209b7;">فريق العمل والقائمون على تطوير هذا المشروع التوعوي:</p>
+      
+      <div style="margin-top: 15px;">
+        <div class="team-member">▪ مجد علي</div>
+        <div class="team-member">▪ جواد القواقزه</div>
+        <div class="team-member">▪ عمر الهيبه</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. صفحة اتصل بنا -->
+  <div id="contact" class="tab-page">
+    <div class="page-header-box header-contact">
+      <h1 class="w3-xxlarge" style="font-weight: 900;">حوار وتواصل بناء</h1>
+      <p class="w3-large">نرحب بكافة الأفكار والنقاشات التي تثري هذا المشروع التوعوي.</p>
+    </div>
+
+    <div class="card-custom">
+      <!-- صورة التبويب الخامس: التواصل والحوار -->
+      <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1200&q=80" alt="التواصل والحوار" class="tab-img">
+
+      <h2>📞 قنوات التواصل العلمي والفلسفي</h2>
+      <p>إن بناء منصة صحية واعية هو عملية مستمرة ومتطورة. يسعدنا استقبال مقترحاتكم، آرائكم، وتساؤلاتكم حول المحتوى المطروح عبر البريد الإلكتروني المخصص للفريق:</p>
+      
+      <p style="margin-top: 25px; font-size: 18px;">
+        <b>البريد الإلكتروني المباشر:</b> 
+        <a href="mailto:majd911saleh@gmail.com" style="color: #d94e14; text-decoration: none; font-weight: 700;">majd911saleh@gmail.com</a>
+      </p>
+      <p style="margin-top: 10px; color: #64748b;">نلتزم بالاطلاع على رسائلكم والرد عليها في إطار السعي المشترك لنشر الوعي والتوازن البيولوجي.</p>
+    </div>
+  </div>
+
+  <!-- تذييل الصفحة -->
+  <footer class="w3-container w3-padding-24 w3-center" style="margin-top:40px; color: #94a3b8; font-size: 14px;">
+    <p>جميع الحقوق محفوظة - مشروع فلسفة نمط الحياة الصحي © 2026</p>
+  </footer>
+
+</div>
+
+<!-- سكريبت البرمجة للتبديل بين الصفحات بسلاسة -->
+<script>
+function openPage(evt, pageName) {
+  var i, x, tablinks;
+  
+  // إخفاء جميع محتويات الصفحات
+  x = document.getElementsByClassName("tab-page");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  
+  // إزالة فئة النشط من جميع الأزرار
+  tablinks = document.getElementsByClassName("sidebar-item");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  
+  // إظهار الصفحة المستهدفة وتنشيط الزر الخاص بها
+  document.getElementById(pageName).style.display = "block";  
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
+
